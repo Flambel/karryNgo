@@ -1,0 +1,41 @@
+// a{
+//     text-decoration: none;
+//     color: white !important;
+//     font-size: 12px;
+//     border-radius: 20px;
+//     padding-left: 50px !important;
+//     padding-right: 50px !important;
+//     box-shadow: 2px 2px 5px gray;
+// }
+//  li{
+//     margin-right: auto;
+//  }
+//  .active{
+//     background-color: #16b416;
+    
+//  }
+
+a{
+   text-decoration: none;
+   color: red !important;
+}
+#liNav li{
+   margin-right: 15px;
+}
+.active{
+   //  text-decoration: underline;
+   border-bottom: 2px solid red
+}
+button{
+    display: inline;
+}
+
+#liAuth li, img{
+   list-style: none;
+   display: inline;
+   font-size: 17px;
+}
+
+button{
+   display: inline;
+}

@@ -1,0 +1,133 @@
+<div [@routerTransition]>
+    <app-page-header [heading]="'Settings Management'" [icon]="'fa-fog'"></app-page-header>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card mb-3">
+                <div class="card-header">
+                	 <h2 class="text-center">{{empformlabel}}</h2>  
+           				<alert></alert>
+                </div>
+
+                <div class="col-md-10">  
+      <form [formGroup]="addForm" novalidate class="form">
+
+    <input  name="id" type="hidden" formControlName="_id" >  
+
+<div class="row">
+	
+     <div class="form-group col-md-4">  
+	      <label for="perc_service">Percentage On Service:</label>  
+	      <input formControlName="percentageOneService" knifeNoSpaces knifeNoCopyPaste knifeOnlyNumbers placeholder="% On Service" class="form-control" id="perc_service" [ngClass]="{ 'is-invalid': submitted && f.percentageOneService.errors }">  
+	      <div *ngIf="submitted && f.percentageOneService.errors" class="invalid-feedback">
+	        <div *ngIf="f.percentageOneService.errors.required">Percentage On Service is required</div>
+	        <div *ngIf="f.percentageOneService.errors.max">Percentage On Service must be lower than 100</div>
+	        <div *ngIf="f.percentageOneService.errors.min">Percentage On Service must be greather than 0</div>
+	      </div>
+     </div> 
+
+    <div class="form-group col-md-4">  
+      <label for="valtime">Value Time:</label>  
+      <input formControlName="value_time" knifeNoSpaces knifeNoCopyPaste knifeOnlyNumbers  placeholder="Value Time" class="form-control" id="valtime" [ngClass]="{ 'is-invalid': submitted && f.value_time.errors }"> 
+      <div *ngIf="submitted && f.value_time.errors" class="invalid-feedback">
+	        <div *ngIf="f.value_time.errors.required">Value Time is required</div>
+	        <div *ngIf="f.value_time.errors.maxlength">Value Time must be at most 8 digits</div>
+	        <div *ngIf="f.value_time.errors.minlength">Value Time must be at least 1 digits</div>
+	  </div>  
+    </div> 
+
+    <div class="form-group col-md-4">  
+      <label for="timetype">Time Type:</label>  
+        <select class="form-control" formControlName="type_time" name="timetype" id="timetype" [ngClass]="{ 'is-invalid': submitted && f.type_time.errors }" >
+	        <option [value]=""></option>
+	        <option *ngFor="let period of periods" [value]="period.id">{{period.name}}</option>
+        </select>  
+      <div *ngIf="submitted && f.type_time.errors" class="invalid-feedback">
+            <div *ngIf="f.type_time.errors.required">Time Type is required</div>
+       </div>
+    </div>
+
+</div>
+  
+
+<div class="row">
+	     
+    <div class="form-group col-md-4">  
+      <label for="valcost">Value Cost:</label>  
+      <input formControlName="value_cost" knifeNoSpaces knifeNoCopyPaste knifeOnlyNumbers  placeholder="Value Cost" class="form-control" id="valcost" [ngClass]="{ 'is-invalid': submitted && f.value_cost.errors }"> 
+      <div *ngIf="submitted && f.value_cost.errors" class="invalid-feedback">
+	        <div *ngIf="f.value_cost.errors.required">Value Cost is required</div>
+	        <div *ngIf="f.value_cost.errors.maxlength">Value Cost must be at most 8 digits</div>
+	        <div *ngIf="f.value_cost.errors.minlength">Value Cost must be at least 1 digits</div>
+	  </div>    
+    </div> 
+
+    <div class="form-group col-md-4">  
+      <label for="device_cst">Device Cost:</label>  
+        <select class="form-control" formControlName="device_cost" name="device_cst" id="device_cst" [ngClass]="{ 'is-invalid': submitted && f.device_cost.errors }" >
+	        <option [value]=""></option>
+	        <option *ngFor="let cur of currencies" [value]="cur.id">{{cur.name}}</option>
+        </select> 
+        <div *ngIf="submitted && f.device_cost.errors" class="invalid-feedback">
+            <div *ngIf="f.device_cost.errors.required">Device Cost is required</div>
+       </div> 
+    </div> 
+
+    <div class="form-group col-md-4">  
+      <label for="perc_after_work">Percentage After Work:</label>  
+      <input formControlName="percentageAfterHourWork" knifeNoSpaces knifeNoCopyPaste knifeOnlyNumbers placeholder="% After Work" class="form-control" id="perc_after_work" [ngClass]="{ 'is-invalid': submitted && f.percentageAfterHourWork.errors }">  
+      <div *ngIf="submitted && f.percentageAfterHourWork.errors" class="invalid-feedback" >
+	        <div *ngIf="f.percentageAfterHourWork.errors.required">Percentage After Work is required</div>
+	        <div *ngIf="f.percentageAfterHourWork.errors.max">Percentage After Work  must be lower than 100</div>
+	        <div *ngIf="f.percentageAfterHourWork.errors.min">Percentage After Work  must be greather than 0</div>
+	      </div>  
+    </div> 
+
+</div>
+	
+
+<div class="row">
+	
+    <div class="form-group col-md-6">  
+      <label for="device_adv">Device Advert:</label>  
+        <select class="form-control" formControlName="device_advert" name="device_adv" id="device_adv" [ngClass]="{ 'is-invalid': submitted && f.device_advert.errors }" >
+	        <option [value]=""></option>
+	        <option *ngFor="let cur of currencies" [value]="cur.id">{{cur.name}}</option>
+        </select>  
+        <div *ngIf="submitted && f.device_advert.errors" class="invalid-feedback">
+            <div *ngIf="f.device_advert.errors.required">Device Advert is required</div>
+       </div> 
+    </div>  
+
+    <div class="form-group col-md-6">  
+      <label for="valadvert">Value Advert:</label>  
+      <input formControlName="value_advert" knifeNoSpaces knifeNoCopyPaste knifeOnlyNumbers  placeholder="Value Advert" class="form-control" id="valadvert" [ngClass]="{ 'is-invalid': submitted && f.value_advert.errors }"> 
+      <div *ngIf="submitted && f.value_advert.errors" class="invalid-feedback">
+	        <div *ngIf="f.value_advert.errors.required">Value Advert is required</div>
+	        <div *ngIf="f.value_advert.errors.maxlength">Value Advert must be at most 8 digits</div>
+	        <div *ngIf="f.value_advert.errors.minlength">Value Advert must be at least 1 digits</div>
+	  </div>  
+    </div> 
+
+</div>
+
+     
+
+<div class="row">
+    <div class="form-group col-md-12 text-center">
+        <button class="btn btn-success mr-4"  *ngIf="btnvisibility" (click)="onSubmit()">Save</button>   
+        <button class="btn btn-success mr-4"  *ngIf="!btnvisibility" (click)="onUpdate()">Update</button> 
+        <button class="btn btn-danger" (click)="onCancel()">Cancel</button> 
+    </div>
+</div>
+      
+        <!-- <p>Form value: {{ addForm.value | json }}</p>   -->
+
+      </form>  
+    </div>  
+   
+            </div> 
+        </div>
+
+    </div>
+</div>
+    

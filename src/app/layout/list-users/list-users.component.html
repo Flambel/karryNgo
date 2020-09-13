@@ -1,0 +1,56 @@
+<div [@routerTransition]>
+    <router-outlet></router-outlet>
+ <div *ngIf="route.children.length === 0">
+    <app-page-header [heading]="'Users'" [icon]="'fa-users'"></app-page-header>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card mb-3">
+                <div class="card-header">
+                    <alert></alert>
+                    Users Lists : {{persons?.length}}
+                        <!-- <div *ngIf="arr && arr.length > 0">
+                        {{arr[0].name}}
+                        </div> -->
+                    
+                </div>
+                <div class="card-body table-responsive">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Username</th>
+                            <th>Role</th>
+                            <th>Email</th>
+                            <th>Sex</th>
+                            <th>Phone</th>
+                            <th>Country</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let person of persons;let rank = index">
+                            <td scope="row">{{rank+1}}</td>
+                            <td>{{person.username}}</td>
+                            <!-- <td  style="color: blue;font-weight: bold">{{ getRoleName(person.title_role,role_data) }}  </td> -->
+                            <td  style="color: blue;font-weight: bold">{{ person.role_id }}  </td>
+                            <td>{{person.email}}</td>
+                            <td>{{person.gender}}</td>
+                            <td>{{person.phone}}</td>
+                            <td>{{person.suspended}}</td>
+                            <td>
+                                <button [disabled]="currentUser.user.title_role!='administrator'" *ngIf="person.email!=currentUser.user.email" (click)="changeRole(person._id)" style="margin-right: 20px;" class="btn btn-info" style="margin-bottom: 2px;"> {{person.title_role}}</button>
+                                <button *ngIf="person.email!=currentUser.user.email" (click)="editEmp(person._id)" style="margin-right: 20px;" class="btn btn-info" style="margin-bottom: 2px;"> Edit</button>  
+                                <button *ngIf="person.email!=currentUser.user.email" class="btn btn-danger" (click)="deleteUser(person._id)"  style="margin-bottom: 2px;">Delete</button>
+                                <button *ngIf="person.email!=currentUser.user.email && person.suspended==false" class="btn btn-success" (click)="suspendUser(person._id)"  style="margin-bottom: 2px;">Suspend</button>
+                                <button *ngIf="person.email!=currentUser.user.email && person.suspended==true" class="btn btn-warning" (click)="unsuspendUser(person._id)" >Unsuspend</button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div> 
+        </div>
+
+    </div>
+    </div>
+</div>

@@ -1,0 +1,159 @@
+<div class="section-full bg-change-section overlay-wraper bg-light px-5 py-4">
+    <div class="container px-5">
+        <div class="section-head  text-black" style="margin-bottom: 30px;">
+            <h2 ><b>Details of the service</b></h2>
+        </div>
+        <div class="row">
+            <div class="col-md-4" style="padding: 0px 30px;">
+                <div class="row py-3" style="background-color: white; border: 2px solid rgb(238, 238, 238);">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-12" style="border-bottom: 1px solid rgb(231, 230, 230);">
+                                <h4><b>About the user requester</b> </h4>
+                            </div>
+                            <div class="col-md-12 pb-3" *ngIf="newUser">
+                                <h5><b>Personal Details</b></h5>
+                                    <p class="bg-light p-2" > <img [src]="newUser.picture" height="100px" width="100px" alt="user pic"></p>
+                                    <p class="bg-light p-2" >FName : {{ newUser.firstname}}</p>
+                                    <p class="bg-light p-2">LNale : {{ newUser.surname}}</p>
+                                    <p class="bg-light p-2">Genger : {{ newUser.gender}}</p>
+                            </div>
+                            <div class="col-md-12 pb-3" *ngIf="address">
+                                <h5><b>Address</b></h5>
+                                    <p class="bg-light p-2" >Country : {{ address.country ? address.country : 'not set'}}</p>
+                                    <p class="bg-light p-2">Province : {{ address.province}}</p>
+                                    <p class="bg-light p-2">City : {{ address.city}}</p>
+                                    <p class="bg-light p-2">STown : {{ address.surbub_town}}</p>
+                            </div>
+                            <div class="col-md-12 pb-3" *ngIf="contact">
+                                <h5><b>Contacts</b></h5>
+                                    <p class="bg-light p-2" >eEmail: {{ contact.email ? contact.email : 'not set'}}</p>
+                                    <p class="bg-light p-2" >Mobile: {{ contact.mobile ? contact.mobile : 'not set'}}</p>
+                                    <p class="bg-light p-2" >Work: {{ contact.work ? contact.work : 'not set'}}</p>
+                                    <p class="bg-light p-2" >Home: {{ contact.home ? contact.home : 'not set'}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <app-service-list [services]="services" (selectService)="selectService($event)"></app-service-list> -->
+            </div>
+            <div class="col-md-8">
+                <div class="row py-3" style="background-color: white; border: 2px solid rgb(238, 238, 238);">
+                    <div class="col-md-12" *ngIf="service_details">
+                        <app-view-service [canEditBid]="canEditBid" [currentUser]="currentUser" [service_details]="service_details" (serviceButton)="editBid($event)" [txtButton]="' Place bid '"></app-view-service>
+                        <button *ngIf="service_details.status=='awarded' && service_details.user_id==currentUser._id" type="button" class="btn btn-primary p-1 mt-2" style="font-size: 11px; float: right;" data-toggle="modal" data-target=".bd-example-modal-s">Completed</button>
+                    </div>                    
+                </div>
+                <div class="row pt-3" *ngIf="canEditBid" style="background-color: white; border: 2px solid rgb(238, 238, 238); margin-top: 20px;">
+                    <div class="col-md-12">
+                        <div class="row p-1">
+                            <div class="col-md-12">
+                                <form [formGroup]="bidForm" (ngSubmit)="onSubmitForm()" class="mx-auto">
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <p><label for="preferred_date_service">Preferred date and time</label></p> 
+                                            <input [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" [formControlName]="'preferred_date_service'" placeholder="Date & Time">
+                                            <owl-date-time #dt1></owl-date-time>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="price_bid">Estimated price</label>
+                                            <input type="number" class="form-control" id="price_bid" placeholder="Price" [formControlName]="'price_bid'">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="description">Describe your precess</label>
+                                        <textarea class="form-control" id="description" [formControlName]="'description'" placeholder="Description" rows="5"></textarea>
+                                    </div>
+                                    <div class="form-group row px-auto">
+                                        <button type="button" (click)="showBidForm()" class="btn btn-primary my-2 mx-auto">cancel</button>
+                                        <button type="submit" class="btn btn-primary my-2 mx-auto">save service</button>
+                                    </div> 
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row py-3" *ngIf="accepted_bid_details" style="margin-top: 20px; background-color: white; border: 2px solid rgb(238, 238, 238);">
+                    <div class="col-md-12" *ngIf="service_details">
+                        <div class="row">
+                            <div class="col-md-12 pt-1" style="border-bottom: 1px solid rgb(231, 230, 230);">
+                                <h5><b>Accepted Bid</b></h5>
+                            </div>
+                            <div class="col-md-12 p-2" id="aaa">
+                                <div class="row" style=" font-size: 11px; border-bottom: 1px solid rgb(238, 238, 238); ">
+                                    <div class="col-sm-12">
+                                        <i class="fa fa-address-book-o" aria-hidden="true"></i>
+                                        <p> {{ accepted_bid_details.description }} </p>
+                                        <!-- <button *ngIf="service_details.user_id==currentUser._id & accepted_bid_details.status=='pending'" type="button" (click)="acceptBid(bid)" class="btn btn-primary p-1" style="font-size: 11px; float: right;">Accept Bid</button> -->
+                                    </div>                                     
+                                    <div class="col-sm-3">
+                                        <p> <i class="fa fa-money" aria-hidden="true"></i>  {{ accepted_bid_details.price_bid }} ZAR</p>
+                                    </div>                                     
+                                    <div class="col-sm-3">
+                                        <p> <i class="fa fa-calendar" aria-hidden="true"></i>  {{ accepted_bid_details.preferred_date_service | date }}</p>
+                                    </div>                                     
+                                    <div class="col-sm-3">
+                                        <p> <i class="fa fa-clock-o" aria-hidden="true"></i>  {{ getTime(accepted_bid_details.preferred_date_service)}}</p>
+                                    </div>                                     
+                                    <div class="col-sm-3">
+                                        <p> <i class="fa fa-list-alt" aria-hidden="true"></i>  {{accepted_bid_details.status}}</p>
+                                    </div>                                     
+                                </div>
+                            </div>
+                        </div>
+                    </div>                    
+                </div>
+                <div class="row py-3" style="margin-top: 20px; background-color: white; border: 2px solid rgb(238, 238, 238);">
+                    <div class="col-md-12" *ngIf="service_details">
+                        <div class="row">
+                            <div class="col-md-12 pt-1" style="border-bottom: 1px solid rgb(231, 230, 230);">
+                                <h5><b>Bids</b></h5>
+                            </div>
+                            <div class="col-md-12 pt-3" id="aaa" *ngFor="let bid of bid_details">
+                                <div class="row" style=" font-size: 11px; border-bottom: 1px solid rgb(238, 238, 238); ">
+                                    <div class="col-sm-12">                                        
+                                        <p><i class="fa fa-address-book-o" aria-hidden="true"></i> {{ bid.description }} </p>
+                                        <button *ngIf="service_details.user_id==currentUser._id && service_details.status=='open'" type="button" (click)="acceptBid(bid)" class="btn btn-primary p-1" style="font-size: 11px; float: right;">Accept Bid</button>
+                                    </div>                                     
+                                    <div class="col-sm-3">
+                                        <p> <i class="fa fa-money" aria-hidden="true"></i>  {{ bid.price_bid }} ZAR</p>
+                                    </div>                                     
+                                    <div class="col-sm-3">
+                                        <p> <i class="fa fa-calendar" aria-hidden="true"></i>  {{ bid.preferred_date_service | date }}</p>
+                                    </div>                                     
+                                    <div class="col-sm-3">
+                                        <p> <i class="fa fa-clock-o" aria-hidden="true"></i>  {{ getTime(bid.preferred_date_service)}}</p>
+                                    </div>                                     
+                                    <div class="col-sm-3">
+                                        <p> <i class="fa fa-list-alt" aria-hidden="true"></i>  {{bid.status}}</p>
+                                    </div>                                     
+                                </div>
+                            </div>
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- This is the modal to confirm the completion of the service -->
+<div class="modal fade bd-example-modal-s" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content p-3">
+            <div class="row pb-4">
+                <div class="col-md-12">
+                    <p>Are you sure you want to confirm the completion of this service ?</p>
+                </div>                
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <button type="button" class="btn btn-success" style="float: left;" data-dismiss="modal" (click)="seviceCompleted()">Yes</button>
+                    <button type="button" class="btn btn-danger" style="float: right;" data-dismiss="modal">descard</button>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>

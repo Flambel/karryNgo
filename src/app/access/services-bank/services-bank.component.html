@@ -1,0 +1,29 @@
+<div class="section-full bg-change-section overlay-wraper bg-light px-5 py-4">
+    <div class="container px-5">
+        <div class="section-head  text-black" style="margin-bottom: 30px;">
+            <h2 ><b>Service Requests</b></h2>
+        </div>
+        <div class="row p-1">
+            <div class="col-md-12">
+                <ul>
+                    <li>
+                        <input type="radio" id="all" checked name="service" (click)="aaa('all')" value="all">
+                        <label for="all">All</label>
+                    </li>
+                    <li>
+                        <input type="radio" id="awarded" name="service" (click)="aaa('awarded')" value="awarded">
+                        <label for="awarded">Awarded</label>
+                    </li>
+                    <li>
+                        <input type="radio" id="open" name="service" (click)="aaa('open')" value="open">
+                        <label for="open">Open</label>
+                    </li>
+                </ul> 
+                <!-- {{valeur}} -->
+            </div>
+            <div class="col-md-12">
+                <app-service-list [services]="services" (selectService)="selectService($event)"></app-service-list>
+            </div>
+        </div>
+    </div>
+</div>

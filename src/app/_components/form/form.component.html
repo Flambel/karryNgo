@@ -1,0 +1,25 @@
+<div class="p-4" style="margin-bottom: 20px; margin-top: 20px; text-align: center; border-bottom: 1px solid gray;">
+    <h3><b>{{source.title}}</b></h3>
+</div>
+<div class="row p-1">
+    <div class="col-md-12">
+        <form [formGroup]="userForm" (ngSubmit)="onSubmitForm()" class="mx-auto">
+            <div class="form-group row" *ngIf="source.pic">
+                <img [src]="source.pic" height="80px" width="80px" alt="" class="mx-auto">
+            </div>
+            <div class="form-group row mx-2">
+                <div class="mb-4" *ngFor="let dataForm of data" [ngClass]= "dataForm.dim">
+                    <label [for]="dataForm.controlName"><b>{{ dataForm.label }}</b></label>
+                    <input [type]="dataForm.type" class="form-control" [id]="dataForm.controlName" [formControlName]="dataForm.controlName" [placeholder]="dataForm.label" [ngClass]="{ 'is-invalid': submitted && f[dataForm.controlName].errors }">
+                    <div *ngIf="submitted && f[dataForm.controlName].errors" class="invalid-feedback">
+                        <div *ngIf="f[dataForm.controlName].errors.required">{{ dataForm.controlName }} is not valid</div>
+                    </div>
+                </div>                
+            </div>
+            <div class="form-group row px-auto">
+                <button type="submit" class="btn btn-primary my-2 mx-auto">{{ source.btnText }}</button>
+            </div>                        
+            <p>{{ source.text }} <a href="javascript:void(0);" (click)="navigateTo.emit()"> {{ source.link }} </a></p>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,86 @@
+<div class="bg-info">
+    <div class="container-fluid" style="padding-left: 40px; padding-right: 40px;">
+        <div class="row">
+            <div class="col-md-6 py-4" style="padding-right: 40px;">
+                <div class="row bg-white mb-4 p-4">
+                    <div class="col-md-3"><b>Picture</b></div>
+                    <div class="col-md-9">
+                        <p><b>Patient Name ( Age )</b></p>
+                        <p class="text-success">Patient Profile</p>
+                        <app-button [data]="btnPatient" (onClick)="clickPatient($event)"></app-button>
+                    </div>
+                </div>                
+                <div class="row bg-white my-5 p-4">
+                    <div class="col-md-12">
+                        <app-button [data]="btnSymptom" (onClick)="clickPatient($event)" ></app-button>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-12">
+                            <h3><b>Symptom</b></h3>
+                            <h5><b>Enter text symptom</b></h5>
+                            <div class="row p-4" style="border: 1px rgb(230, 228, 228) solid">
+                                <div class="col-md-12">
+                                    <ul>
+                                        <li>Symptom 1</li>
+                                        <li>Symptom 2</li>
+                                        <li>Symptom 3</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-12">
+                                    <app-button [data]="saveSymptom" (onClick)="clickPatient($event)" ></app-button>
+                                </div> 
+                            </div>                            
+                        </div>
+                    </div>
+                </div>                
+                <div class="row bg-white my-5 p-4">
+                    <div class="col-md-12">
+                        <app-button [data]="btnSymptom" (onClick)="clickPatient($event)" ></app-button>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-12">
+                            <h3><b>Medication</b></h3>
+                            <h5><b>Enter text Medication</b></h5>
+                            <div class="row p-4" style="border: 1px rgb(230, 228, 228) solid">
+                                <div class="col-md-12">
+                                    <ul>
+                                        <li>Medication 1</li>
+                                        <li>Medication 2</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-12">
+                                    <app-button [data]="saveSymptom" (onClick)="clickPatient($event)" ></app-button>
+                                </div> 
+                            </div>                            
+                        </div>
+                    </div>
+                </div>                
+                <div class="row bg-white mt-4 p-4">
+                    <div class="col-md-12">
+                        <app-button [data]="btnSymptom" (onClick)="clickPatient($event)" ></app-button>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-12">
+                            <h3><b>Diagnose</b></h3>
+                            <h5><b>Prescription</b></h5>
+                            <div class="row p-4" style="border: 1px rgb(230, 228, 228) solid">
+                                <div class="col-md-12">
+                                    <ul>
+                                        <li>Diagnose 1</li>
+                                        <li>Diagnose 2</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-12">
+                                    <app-button [data]="saveSymptom" (onClick)="clickPatient($event)" ></app-button>
+                                </div> 
+                            </div>                            
+                        </div>
+                    </div>
+                </div>               
+            </div>
+            <div class="col-md-6 py-4 bg-warning" style="padding-left: 40px;">
+                <!-- <app-form [data]="data" [source]="source" (onClick)="onSubmitForm($event)"></app-form> -->
+            </div>
+        </div>
+    </div>
+</div>

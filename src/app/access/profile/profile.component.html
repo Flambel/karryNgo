@@ -1,0 +1,169 @@
+<div class="p-5" style="background-color: rgb(241, 241, 241);">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-3 p-4">
+                <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                    <a class="nav-link active" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="true">Profile</a>
+                    <a class="nav-link" id="v-pills-address-tab" data-toggle="pill" href="#v-pills-address" role="tab" aria-controls="v-pills-address" aria-selected="false">Address</a>
+                    <a class="nav-link" id="v-pills-contacts-tab" data-toggle="pill" href="#v-pills-contacts" role="tab" aria-controls="v-pills-contacts" aria-selected="false">Contacts</a>
+                    <a class="nav-link" id="v-pills-skills-tab" data-toggle="pill" href="#v-pills-skills" role="tab" aria-controls="v-pills-skills" aria-selected="false">Skills</a>
+                    <a class="nav-link" id="v-pills-password-tab" data-toggle="pill" href="#v-pills-password" role="tab" aria-controls="v-pills-password" aria-selected="false">Password</a>
+                </div>
+            </div>
+            <div class="col-lg-9 p-4">
+                <div  style="background-color: white;" >
+                    <div class="tab-content" id="v-pills-tabContent">
+                        <div class="tab-pane fade show active" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                            <div class="p-1" style="margin-bottom: 30px; text-align: center; border-bottom: 1px solid gray;">
+                                <h1><b>Profile Details</b></h1>
+                            </div>                            
+                            <div class="row pl-5 pr-5" *ngIf="userData">
+                                <div class="col-sm-12 p-1" style="margin-bottom: 15px;">
+                                    <div class="form-group">
+                                        <label for="file">
+                                            <!-- <img *ngIf="userData[0].picture" [src]="userData[0].picture" alt="profile"> -->
+                                            <img [src]="userData[0].picture ? userData[0].picture : 'assets/profile-user.png'" height="100" width="100" alt="profile">
+                                        </label>
+                                        <input type="file"
+                                                accept="image/*"
+                                                hidden
+                                                id="file"
+                                                (change)="handleFileInput($event.target.files)">
+                                    </div>                                  
+                                    <p><img *ngIf="fileToUpload" [src]="fileToUpload" height="150" width="150" alt="aa"></p>
+                                    <input *ngIf="fileToUpload" type="button" class="btn btn-primary p-1 mr-2" style="font-size: 11px;" value="Save" (click)="uploadFileToActivity()">
+                                    <input *ngIf="fileToUpload" type="button" class="btn btn-secondary p-1" style="font-size: 11px;" value="cancel" (click)="cancelPic()"/>
+                                </div>
+                                <div class="col-sm-6 p-3">USERNAME : {{ userData[0].username }}</div>
+                                <div class="col-sm-6 p-3">FIRSTNAME : {{ userData[0].firstname }}</div>
+                                <div class="col-sm-6 p-3">SURNAME : {{ userData[0].surname }}</div>
+                                <div class="col-sm-6 p-3">DESCRIPTION : {{ userData[0].description }}</div>
+                                <div class="col-sm-6 p-3">ETHNIC GROUP : {{ userData[0].ethnic_group }}</div>
+                                <div class="col-sm-12 py-3"><button type="button" class="btn btn-primary mx-auto" (click)="showPForm()">{{pform ? 'cancel' : 'modify'}}</button></div>
+                            </div>
+                            <app-form *ngIf="pform" [data]="data" [source]="source" (onClick)="onSubmitForm($event)"></app-form>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-address" role="tabpanel" aria-labelledby="v-pills-address-tab">
+                            <div class="p-1" style="margin-bottom: 30px; text-align: center; border-bottom: 1px solid gray;">
+                                <h1><b>Address Details</b></h1>
+                            </div>
+                            <div class="row pl-5 pr-5" *ngIf="userData">
+                                <div class="col-sm-6 p-3">COUNTRY : {{ userData[3].country }}</div>
+                                <div class="col-sm-6 p-3">PROVINCE : {{ userData[3].province }}</div>
+                                <div class="col-sm-6 p-3">CITY : {{ userData[3].city }}</div>
+                                <div class="col-sm-6 p-3">POSTAL CODE : {{ userData[3].postal_code }}</div>
+                                <div class="col-sm-6 p-3">BURBUB TOWN : {{ userData[3].surbub_town }}</div>
+                                <div class="col-sm-6 p-3">STREET NAME : {{ userData[3].street_name }}</div>
+                                <div class="col-sm-6 p-3">STREET NUMBER : {{ userData[3].street_number }}</div>
+                                <div class="col-sm-12 py-3"><button type="button" class="btn btn-primary mx-auto" (click)="showPAddress()">{{paddress ? 'cancel' : 'modify'}}</button></div>
+                            </div>
+                            <app-form *ngIf="paddress" [data]="dataAddress" [source]="sourceAddress" (onClick)="onSubmitAddressForm($event)"></app-form>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-contacts" role="tabpanel" aria-labelledby="v-pills-contacts-tab">
+                            <div class="p-1" style="margin-bottom: 30px; text-align: center; border-bottom: 1px solid gray;">
+                                <h1><b>Contact Details</b></h1>
+                            </div>
+                            <div class="row pl-5 pr-5" *ngIf="userData">
+                                <div class="col-sm-6 p-3">EMAIL : {{ userData[1].email }}</div>
+                                <div class="col-sm-6 p-3">MOBILE : {{ userData[1].mobile }}</div>
+                                <div class="col-sm-6 p-3">WORK : {{ userData[1].work }}</div>
+                                <div class="col-sm-6 p-3">HOME : {{ userData[1].home }}</div>
+                                <div class="col-sm-12 py-3"><button type="button" class="btn btn-primary mx-auto" (click)="showPContact()">{{pcontact ? 'cancel' : 'modify'}}</button></div>
+                            </div>
+                            <app-form *ngIf="pcontact" [data]="dataContact" [source]="sourceContact" (onClick)="onSubmitContactForm($event)"></app-form>
+                        </div>
+                        <!-- To edit the skills -->
+                        <div class="tab-pane fade" id="v-pills-skills" role="tabpanel" aria-labelledby="v-pills-skills-tab">
+                            <div class=" p-1" style="margin-bottom: 20px; text-align: center; border-bottom: 1px solid gray;">
+                                <h1><b>Skills Details</b></h1>
+                            </div> 
+                            <div class="row pl-3" >
+                                <div class="col-sm-12 py-3">
+                                    <div class="row" *ngIf="userData">
+                                        <div class="col-md-12" style="margin-top: 5px;">
+                                            <div class="row">
+                                                <div class="col-md-3 p-2" *ngFor="let skill of userData[0].skills">
+                                                    <span class="p-2 bg-secondary">
+                                                    {{skill.souscategoryName}}
+                                                </span>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="col-md-12 mt-5">
+                                            <b>Experience : <a href="javascript:void(0)"> {{ userData[0].experience }}</a></b>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 py-3">
+                                    <button type="button" (click)="showSkillsForm()" class="btn btn-secondary py-1 px-2" style="font-size: 11px; "> {{editSkills ? 'cancel' : 'modify'}} </button>
+                                </div>
+                            </div>
+                            <div class="row pl-3" *ngIf="editSkills">
+                                <div class="col-sm-4" *ngIf="services_category">
+                                    <div class="row" style="display: flex;">
+                                        <div class="col-sm-12 py-3" style="margin-left: auto; margin-right: auto;">Categories</div>
+                                        <div class="col-sm-12"  *ngFor="let category of services_category">
+                                            <label class="checkbox-inline"><input name="nom" (click)="handleClick(category._id);" type="radio" value=""> {{ category.categoryName}}</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4" *ngIf="services_subcategory">
+                                    <div class="row">
+                                        <div class="col-sm-12 py-3" style="margin-left: auto; margin-right: auto;">Sub-categories</div>
+                                        <div class="col-sm-12"  *ngFor="let subcategory of services_subcategory">
+                                            <label class="checkbox-inline"><input type="checkbox" (click)="selectedSub(subcategory)" value=""> {{ subcategory.souscategoryName}}</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4" *ngIf="skills_chosed.length!=0">
+                                    <div class="row">
+                                        <div class="col-sm-12 py-3" style="margin-left: auto; margin-right: auto;">Your Skills</div>
+                                        <div class="col-sm-12"  *ngFor="let skill of skills_chosed">
+                                            <label class="checkbox-inline"><input type="checkbox" (click)="unSelectedSub(skill)" checked value=""> {{ skill.souscategoryName}}</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-row" style="margin-top: 20px;">
+                                        <div class="col-md-12">
+                                            <p class="text-center labelstyle">Experience</p>
+                                            <p class="text-center">How would you rate your experience with the skills you have selected</p>
+                                        </div>  
+                                        <div class="col-sm-4 experiencecol" [ngStyle]="{'border': '3px solid', 'border-color': state1 ? 'blue' : 'white'}" (click)="experience1('Beginner')" style="cursor: pointer;">
+                                            <p class="experiencecolTitle">Beginner</p>
+                                            <hr>
+                                            <p class="experiencecolcontent">You have been working with these skills for less than a year and are still learning</p>
+                                        </div>
+
+                                        <div class="col-sm-4 experiencecol" [ngStyle]="{'border': '3px solid', 'border-color': state2 ? 'blue' : 'white'}"  (click)="experience2('Intermediate')" style="cursor: pointer;">
+                                            <p class="experiencecolTitle">Intermediate</p>
+                                            <hr>
+                                            <p class="experiencecolcontent">You have been working with these skills for 2 - 5 years and can almost complete everything.</p>
+                                        </div>
+
+                                        <div class="col-sm-4 experiencecol" [ngStyle]="{'border': '3px solid', 'border-color': state3 ? 'blue' : 'white'}"  (click)="experience3('Advanced')" style="cursor: pointer;">
+                                            <p class="experiencecolTitle">Advanced</p>
+                                            <hr>
+                                            <p class="experiencecolcontent">You have been working with those skills for more than 5 years, and are expert in them.</p>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <p> {{experience}} {{state1}} {{state2}} {{state3}} </p>
+                                        </div>                                            
+                                    </div>
+                                </div>
+                                <div class="col-md-12" style="display: flex;">
+                                    <button type="button" (click)="submitSkills()" class="btn btn-primary py-1 px-2" style="font-size: 11px; margin: auto;"> Save </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-password" role="tabpanel" aria-labelledby="v-pills-password-tab">
+                            <app-form [data]="dataPass" [source]="sourcePass" (onClick)="onSubmitPassForm($event)"></app-form>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>

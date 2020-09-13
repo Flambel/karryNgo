@@ -1,0 +1,151 @@
+<div [@routerTransition]>
+    <router-outlet></router-outlet>
+ <div *ngIf="route.children.length === 0">
+    <app-page-header [heading]="'Messages'" [icon]="'fa-envelope'"></app-page-header>
+    <div class="row">        
+            <div class="col-lg-2"  style="background-color: rgb(237, 245, 245);">
+                <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                    <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true" (click)="getAllReceivedNotes()">Inbox</a>
+                    <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false" (click)="getAllNotes()">Sent</a>
+                    <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false" (click)="aaa()">Write</a>
+                </div>
+            </div>
+            <div class="col-lg-10">
+                <div class="tab-content" id="v-pills-tabContent">
+                    <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                        <ul>
+                            <li *ngFor="let note of notesReceived;let rank = index" style="list-style: none; background-color: rgb(187, 247, 175); border-radius: 12px; margin-bottom: 5px; border-bottom: 1px solid black;">                                
+                                  <a class="btn btn-primary" style="height: 100%; width: 100%;" (click)="accordions(rank+1)">
+                                    <div class="row">
+                                        <div class="col-lg-1">{{rank+1}}</div>
+                                        <div class="col-lg-4">{{note.username_celui_qui_ecrit}}</div>
+                                        <div class="col-lg-7"><b>Subject : </b>{{note.subjest_note_help}}</div>
+                                    </div>
+                                    </a>
+                                    <div class="row">
+                                    <div class="col">
+                                        <div *ngIf="showHide[rank+1]" >
+                                            <div class="card card-body">
+                                                {{note.note_help}}
+
+                                                <!-- Button trigger modal -->
+                                                <div class="col-lg-5">
+                                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" style="width: 100%;">
+                                                        Delete message
+                                                    </button>
+                                                </div>
+                                                
+                                                
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Delete Message</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                        Are you sure you want to delete this message?
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                                                        <button type="button" class="btn btn-primary" (click)="onDelete(note._id)" data-dismiss="modal">Yes</button> 
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                            </li> 
+                        </ul>                        
+                    </div>
+
+                    <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                        <ul>
+                            <li *ngFor="let note of notes;let rank = index" style="list-style: none; background-color: rgb(187, 247, 175); border-radius: 12px; margin-bottom: 5px; border-bottom: 1px solid black;">                                
+                                  <a class="btn btn-primary" style="height: 100%; width: 100%;" (click)="accordions(rank+1)">
+                                    <div class="row">
+                                        <div class="col-lg-1">{{rank+1}}</div>
+                                        <div class="col-lg-4">{{note.username_celui_qui_recoit}}</div>
+                                        <div class="col-lg-7"><b>Subject : </b>{{note.subjest_note_help}}</div>
+                                    </div>
+                                    </a>
+                                    <div class="row">
+                                    <div class="col">
+                                        <div *ngIf="showHide[rank+1]" >
+                                            <div class="card card-body">
+                                                {{note.note_help}}
+
+                                                <!-- Button trigger modal -->
+                                                <div class="col-lg-5">
+                                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal" style="width: 100%;">
+                                                        Delete message
+                                                    </button>
+                                                </div>
+                                                
+                                                
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Delete Message</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                        Are you sure you want to delete this message?
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                                                        <button type="button" class="btn btn-primary" (click)="onDelete(note._id)" data-dismiss="modal">Yes</button> 
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                            </li>
+                        </ul>  
+                    </div>
+                    <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+                        <h4>Compose New Message.</h4>
+
+                        <form [formGroup]="regForm" (ngSubmit)="onSubmit()">
+                            <div class="form-group">
+                                <b>To.</b>
+                                <input type="text" formControlName="receiver" placeholder="Receiver's Username or Email Address:" class="form-control"  [ngClass]="{ 'is-invalid': submitted && f.receiver.errors }">
+                                <div *ngIf="submitted && f.receiver.errors" class="invalid-feedback text-danger">
+                                    <div *ngIf="f.receiver.errors.required">Receiver is required</div>
+                                </div>
+                            </div>                               
+                            <div class="form-group">
+                                <b>Subject.</b>
+                                <input type="text" formControlName="subject" placeholder="Subject:" class="form-control"  [ngClass]="{ 'is-invalid': submitted && f.subject.errors }">
+                                <div *ngIf="submitted && f.subject.errors" class="invalid-feedback text-danger">
+                                    <div *ngIf="f.subject.errors.required">Subject is required</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <b>Message.</b>
+                                <textarea type="text" rows="7" formControlName="notes" placeholder="Message:" class="form-control"  [ngClass]="{ 'is-invalid': submitted && f.notes.errors }"></textarea>
+                                <div *ngIf="submitted && f.notes.errors" class="invalid-feedback text-danger">
+                                    <div *ngIf="f.notes.errors.required">Message is required</div>
+                                </div>
+                            </div>
+                            <div style="text-align: center;"><p>{{MessageSent}}<b></b></p></div>
+                            <input type="submit" class="login loginmodal-submit" value="Send">      
+                        </form>
+                    </div>                    
+                </div>
+            </div>
+    </div>
+</div>

@@ -1,0 +1,43 @@
+<div [@routerTransition]>
+    <router-outlet></router-outlet>
+ <div *ngIf="route.children.length === 0">
+    <app-page-header [heading]="'Services'" [icon]="'fa-settings'"></app-page-header>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card mb-3">
+                <div class="card-header">
+                    <alert></alert>
+                    Services : {{services_data?.length}}
+<!--                     <li *ngFor="let obj of categories.data">{{obj | json}}</li> -->
+                    <button style="text-align: right" (click)="add()" class="btn btn-success"> Add</button>                 
+                </div>
+                <div class="card-body table-responsive">
+                    <table class="table">
+                        <thead>
+                        <tr> 
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Service Category</th>
+                            <th>Modified On </th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let val of services_data;let rank = index; " >
+                                <td scope="row">{{rank+1}} </td>
+                                <td style="color: green;font-weight: bold">{{val.serviceName}}</td>
+                                <td style="color: green;font-weight: bold">{{val.description}}</td>
+                                <td  style="color: blue;font-weight: bold">{{ getCategoryName(val.categoryServiceId,categories) }}  </td>
+                                <td style="color: blue;font-weight: bold"> {{val.create_date | date}}</td>
+                                <td> <button (click)="edit(val._id)" style="margin-right: 20px;" class="btn btn-info"> Edit</button>  <button type="button" class="btn btn-danger" (click)="delete(val._id)"  >Delete</button></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div> 
+        </div>
+
+    </div>
+    </div>
+</div>

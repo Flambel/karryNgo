@@ -1,0 +1,79 @@
+<div [@routerTransition]>
+    <app-page-header [heading]="'Settings Management'" [icon]="'fa-fog'"></app-page-header>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card mb-3">
+                <div class="card-header">
+                	 <h2 class="text-center">{{empformlabel}}</h2>  
+           				<alert></alert>
+                </div>
+
+                <div class="col-md-12">   
+
+<div class="row">
+	
+     <div class="form-group col-md-4">  
+	      <label for="perc_service">Percentage On Service:</label>  
+        <p style="color: green;font-weight: bold">{{viewData.percentageOneService}}</p>
+	   </div>
+
+    <div class="form-group col-md-4">  
+      <label for="valtime">Value Time:</label> 
+      <p style="color: green;font-weight: bold">{{viewData.timeToSendReport_value}}</p> 
+    </div> 
+
+    <div class="form-group col-md-4">  
+      <label for="timetype">Time Type:</label>
+      <p style="color: green;font-weight: bold">{{viewData.timeToSendReport_type}}</p>  
+    </div>
+
+</div>
+  
+
+<div class="row">
+	     
+    <div class="form-group col-md-4">  
+      <label for="valcost">Value Cost:</label>   
+      <p style="color: green;font-weight: bold">{{viewData.costMinService_value}}</p>   
+    </div> 
+
+    <div class="form-group col-md-4">  
+      <label for="device_cst">Device Cost:</label> 
+      <p style="color: green;font-weight: bold">{{viewData.costMinService_device}}</p> 
+    </div> 
+
+    <div class="form-group col-md-4">  
+      <label for="perc_after_work">Percentage After Work:</label> 
+      <p style="color: green;font-weight: bold">{{viewData.percentageAfterHourWork}}</p>
+    </div>
+
+</div>	
+
+<div class="row">
+	
+    <div class="form-group col-md-6">  
+      <label for="device_adv">Device Advert:</label> 
+      <p style="color: green;font-weight: bold">{{viewData.costOneAdvertising_device}}</p> 
+    </div>  
+
+    <div class="form-group col-md-6">  
+      <label for="valadvert">Value Advert:</label> 
+      <p style="color: green;font-weight: bold">{{viewData.costOneAdvertising_value}}</p>  
+   </div>
+
+</div>     
+
+<div class="row">
+    <div class="form-group col-md-12 text-center">
+        <button class="btn btn-danger" (click)="onCancel()">Go Back</button> 
+    </div>
+</div>
+      
+    </div>  
+   
+            </div> 
+        </div>
+
+    </div>
+</div>
+    

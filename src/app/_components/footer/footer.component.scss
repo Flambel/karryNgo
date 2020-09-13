@@ -1,0 +1,42 @@
+// shared css for the login and signup page
+.fa-facebook, .fa-twitter, .fa-instagram {
+    font-size: 40px;
+    color: white;
+    margin: 20px
+}
+
+.fa2 .fa {
+    padding: 10px;
+    font-size: 15px;
+    text-align: center;
+    text-decoration: none;
+    margin: 5px 16px;
+    border-radius: 50%;
+}
+
+.terms{
+    margin-bottom: 7px;
+}
+
+a{
+    color: white;
+    text-decoration: none;
+}
+
+
+li
+{
+    margin-left: 10px;
+    margin-right: 10px;
+        list-style-type: none;
+    display: inline;	
+    color: white;
+}
+.fa1 .terms{
+    list-style-type: none;
+    font-size: 14px;
+    left: 0px;
+}
+.fa1 .fa{
+    font-size: 20px;
+}

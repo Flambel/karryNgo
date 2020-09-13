@@ -1,0 +1,91 @@
+<div class="section-full bg-change-section overlay-wraper bg-info px-5 py-4">
+    <div class="container px-5">
+        <div class="section-head  text-black" style="margin-bottom: 30px;">
+            <h2 style="color: white;"><b> Fill the form to post a service</b></h2>
+        </div>
+        <div class="row p-5" style="background-color: white; border-radius: 30px;">
+            <div class="col-md-12">
+                <form [formGroup]="helpForm" (ngSubmit)="onSubmitForm()" class="mx-auto">
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <label for="service_name">Service Name</label>
+                            <input type="text" [formControlName]="'service_name'" class="form-control" id="service_name" placeholder="Service Title">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputState">Service category</label>
+                            <select id="inputState" class="form-control" [formControlName]="'categoryService_id'" (change)="selectedCategory($event.target.value)" placeholder="Select a category">
+                                <!-- <option selected>AAA</option> -->
+                                <option *ngFor="let category of services_category" [value]="category._id">{{ category.categoryName }}</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputState2">Service subcategory</label>
+                            <select id="inputState2" [formControlName]="'subcategory_id'" class="form-control">
+                                <option *ngFor="let subcategory of services_subcategory" [value]="subcategory._id">{{ subcategory.souscategoryName }}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Describe your service</label>
+                        <textarea class="form-control" id="description" [formControlName]="'description'" placeholder="Description" rows="5"></textarea>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <p><b>Add picture to illustrate your service</b></p>
+                            <label type="button" class="bg-secondary" for="file">Add picture</label>
+                            <input type="file"
+                                    accept="image/*"
+                                    hidden
+                                    id="file"
+                                    (change)="handleFileInput($event)">
+                        </div>
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-4" *ngFor="let file of fileToUpload">
+                                    <img [src]="file" alt="" style="width: 100%">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <p><label for="dat">Preferred date and time</label></p> 
+                            <input [owlDateTime]="dt1" [owlDateTimeTrigger]="dt1" [formControlName]="'preferred_date_service'" placeholder="Date & Time">
+                            <owl-date-time #dt1></owl-date-time>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="price">Estimated price</label>
+                            <input type="number" class="form-control" id="price" placeholder="Price" [formControlName]="'price'">
+                        </div>
+                    </div>             
+                    <div class="form-row">
+                        <div class="form-group col-sm-12">
+                            <p><b>Address where the service will be delivered</b></p>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="city">City</label>
+                            <input type="text" [formControlName]="'city'" class="form-control" id="city" placeholder="city">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="address">Address</label>
+                            <input type="text" [formControlName]="'address'" class="form-control" id="addres" placeholder="Address">
+                        </div>
+                    </div>                    
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputEmail4">Email</label>
+                            <input type="email" [formControlName]="'email'" class="form-control" id="inputEmail4" placeholder="Email">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="phone">Phone number</label>
+                            <input type="number" [formControlName]="'phone'" class="form-control" id="phone" placeholder="phone number">
+                        </div>
+                    </div>
+                    <div class="form-group row px-auto">
+                        <button type="submit" class="btn btn-primary my-2 mx-auto">save service</button>
+                    </div> 
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

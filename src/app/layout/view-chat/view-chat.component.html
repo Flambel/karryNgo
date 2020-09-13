@@ -1,0 +1,28 @@
+<div [@routerTransition]>
+    <router-outlet></router-outlet>
+ <div *ngIf="route.children.length === 0">
+    <app-page-header [heading]="'LiveChat'" [icon]="'fa-settings'"></app-page-header>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="col-md-2" style="background-color: rgb(218, 231, 225);">
+                    <div *ngFor="let message of messages" style="background-color: rgb(55, 18, 221); border-radius: 5px; margin: 5px;">
+                        <a href="javascript:void(0);" (click)="afficherMessage(message._id)" style="height: 100%; width: 100%; text-decoration: none; color: black;"><b>{{ message.user_name }} : {{ message.user_email }}</b></a>
+                    </div>
+                </div>
+                <div class="col-md-10" style="background-color: white;">
+                    <div *ngFor="let message of messages">
+                        <div *ngIf="message._id == displayId">
+                            {{message.chat_content}}
+                        </div>                    
+                    </div>
+                    <div *ngIf="displayId == ''" style="font-size: 45px; text-align: center; opacity: 50%;">
+                        Click on a massage to read the content
+                    </div>     
+                </div>
+            </div> 
+        </div>
+
+    </div>
+    </div>
+</div>

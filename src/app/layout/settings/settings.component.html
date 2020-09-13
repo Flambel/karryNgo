@@ -1,0 +1,54 @@
+<div [@routerTransition]>
+    <router-outlet></router-outlet>
+ <div *ngIf="route.children.length === 0">
+    <app-page-header [heading]="'Settings'" [icon]="'fa-settings'"></app-page-header>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card mb-3">
+                <div class="card-header">
+                    <alert></alert>
+                    Configurations Parameters : {{config?.length}}
+                    <button style="text-align: right" (click)="add()" class="btn btn-success"> Add</button> 
+
+                        <!-- <div *ngIf="arr && arr.length > 0">
+                        {{arr[0].name}}
+                        </div> -->                    
+                </div>
+                <div class="card-body table-responsive">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Percentage On Service</th>
+                            <th>Value Time</th>
+                            <th>Type Time</th>
+                            <th>Value Cost</th>
+                            <th>Device Cost</th>
+                            <th>Percentage After Hour Work</th>
+                            <th>Value Advert</th>
+                            <th>Device Advert</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let val of config;let rank = index">
+                            <td scope="row">{{rank+1}} </td>
+                            <td style="color: red;font-weight: bold">{{val.percentageOneService}} %</td>
+                            <td style="color: blue;font-weight: bold">{{val.timeToSendReport_value}}</td>
+                            <td style="color: red;font-weight: bold">{{val.timeToSendReport_type}}</td>
+                            <td>{{val.costMinService_value}}</td>
+                            <td style="color: green;font-weight: bold">{{val.costMinService_device}}</td>
+                            <td style="color: red;font-weight: bold">{{val.percentageAfterHourWork}} %</td>
+                            <td style="color: blue;font-weight: bold">{{val.costOneAdvertising_value}}</td>
+                            <td style="color: green;font-weight: bold">{{val.costOneAdvertising_device}}</td>
+                            <td><button (click)="view(val._id)" style="margin-right: 20px;" class="btn btn-primary"> View</button> <button (click)="edit(val._id)" style="margin-right: 20px;" class="btn btn-info"> Edit</button>  <button type="button" *ngIf="rank!='0'" class="btn btn-danger" (click)="delete(val._id)"  >Delete</button></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div> 
+        </div>
+
+    </div>
+    </div>
+</div>

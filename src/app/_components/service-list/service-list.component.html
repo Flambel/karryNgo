@@ -1,0 +1,46 @@
+<div class="row" style="background-color: white;">
+    <div class="col-md-12">
+        <!-- {{service.user_id}} -->
+    </div>
+    <div class="col-md-12 p-2" *ngFor="let service of services | paginate: { itemsPerPage: 10, currentPage: p} " style=" border: 1px solid rgb(231, 230, 230);">
+        <div class="row">
+            <div class="col-sm-1">
+                <img *ngIf="service.picture" [src]="service.picture[0]" style="width: 100%;" alt="">
+            </div>
+            <div class="col-sm-9">
+                <h5> <b>{{ service.service_name }}</b> </h5>
+                <p> {{ service.description }} </p>
+                <div class="row" style="font-size: 11px;">
+                    <div class="col-sm-4">
+                        <i class="fa fa-calendar" aria-hidden="true"></i>{{ service.status }}
+                    </div>
+                    <div class="col-sm-4">
+                        <i class="fa fa-calendar "></i> {{ service.number_bids }} Bids
+                    </div>
+                    <div class="col-sm-4">
+                        <i class="fa fa-calendar "></i> {{ service.preferred_date_service | date }}
+                    </div>
+                    <div class="col-sm-4">
+                        <i class="fa fa-clock-o"></i> {{ getTime(service.preferred_date_service)}}
+                    </div>
+                    <div class="col-sm-4" *ngIf="service.address_service">
+                        <i class="fa fa-map-marker"></i> {{ service.address_service.city }}, {{ service.address_service.address }}
+                    </div>
+                    <!-- <div class="col-sm-6">
+                        <i class="fa fa-map-marker"></i> {{ getCategoryName.emit(service.categoryService_id) }}
+                    </div> -->
+                </div>
+            </div>
+            <div class="col-sm-2"><i class="fa fa-money"></i>
+                <div class="row d-flex flex-column">
+                    <p>{{service.price}} ZAR</p>
+                </div>
+                
+                <button type="button" (click)="selectService.emit({'service_name': service.service_name, 'service_id': service._id})" class="btn btn-primary p-1" style="font-size: 11px; float: bottom;">Details</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 mt-3">
+        <pagination-controls style="float: right;" (pageChange)="p = $event"></pagination-controls>
+    </div>    
+</div>

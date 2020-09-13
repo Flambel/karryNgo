@@ -1,0 +1,82 @@
+<nav class="navbar navbar-expand-lg navbar-dark px-5" style="padding-top: 15px; padding-bottom: 15px; border-bottom: 4px white solid;">
+    <a class="navbar-brand" [routerLink]="['/home']">
+        <img src="assets/home_images/help123logo.png" class="img-fluid d-inline-block align-top" alt="">
+    </a>
+    <button class="navbar-toggler text-black" style="color: black;" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="fa fa-reorder"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent" style="text-align: center; width: 100%;">
+        <ul class="navbar-nav" id="liNav" style="margin-left: auto; margin-right: auto;">
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/home']" [routerLinkActive]="['active']"><b>Home</b></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/access/service-categories']" [routerLinkActive]="['active']"><b>CATEGORIES</b></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/access/bank-of-services']" [routerLinkActive]="['active']"><b>SERVICIES</b></a>
+            </li>
+            <!-- <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/access/online-consultation']" [routerLinkActive]="['active']">online </a>
+            </li> -->
+            <li class="nav-item">
+                <a class="nav-link"  [routerLink]="['/read-more-about-us']" [routerLinkActive]="['active']"><b>FAQ</b></a>
+            </li>
+        </ul>
+        
+        <form class="form-inline" *ngIf="this">
+        <div class="dropdown" *ngIf="currentUser">
+            <span class="btn " id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img [src]="currentUser.picture ? currentUser.picture : 'assets/profile-user.png'" class="img-fluid" alt="" style="height: 40px; width: 40px; border-radius: 50%">
+            </span>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" *ngIf="currentUser" href="javascript:void(0)" >{{currentUser.username}}</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" [routerLink]="['/access/profile']" [fragment]="'userprofile'">My Profile</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" [routerLink]="['/access/ask-help']" href="javascript:void(0)">Get Help</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" [routerLink]="['/access/services-accepted-or-awarded/my-accepted-services']" href="javascript:void(0)">Accepted Aervices</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" [routerLink]="['/access/services-accepted-or-awarded/my-awarded-services']" href="javascript:void(0)">Awarded Services</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" [routerLink]="['/access/services-completed-by-a-user/my-completed-services']" [fragment]="'deposit'">Completed Services</a>
+                <div class="dropdown-divider"></div>
+                <!-- <a class="dropdown-item" [routerLink]="['/access/profile']" [fragment]="'deposit'">Recharge Account</a>
+                <div class="dropdown-divider"></div> -->
+                <a class="dropdown-item" [routerLink]="['/access/my-help-requests']">My Helps Requests</a>
+                <div class="dropdown-divider"></div>
+                <!-- <a class="dropdown-item" [routerLink]="['/access/completedHelps']">Completed Helps</a>
+                <div class="dropdown-divider"></div> -->
+                <a class="dropdown-item" href="javascript:void(0)" data-toggle="modal" data-target=".bd-example-modal-sm">Log Out</a>                
+            </div>
+        </div>
+        <ul id="liAuth">
+            <!-- <li class="mr-4" *ngIf="currentUser"> <a href="javascript:void(0)" [routerLink]="['/access/messages']"><img src="assets/header/sms.png" alt="" ></a> </li> -->
+            <li class="mr-4" *ngIf="currentUser"> <a href="javascript:void(0)" [routerLink]="['/access/notifications']"><img src="assets/header/notification.png" alt=""></a> </li>
+            <li class="mr-4" *ngIf="!currentUser"> <a href="javascript:void(0)" [routerLink]="['/login']">Login</a> </li>
+            <li *ngIf="!currentUser"> <a href="javascript:void(0)" [routerLink]="['/register']">Register</a> </li>
+        </ul>
+        <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content p-3">
+                    <div class="row pb-4">
+                        <div class="col-md-12">
+                            <p>Are you sure you want to log out ?</p>
+                        </div>
+                        
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button type="button" class="btn btn-success" style="float: left;" data-dismiss="modal" (click)="logOut()">Yes</button>
+                            <button type="button" class="btn btn-danger" style="float: right;" data-dismiss="modal">descard</button>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    </div>
+</nav>
+<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-primary" style=" border-bottom: 4px white solid; margin-left: 20px;"></nav> -->

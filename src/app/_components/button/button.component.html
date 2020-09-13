@@ -1,0 +1,9 @@
+<a href="javascript:void(0);" 
+    (click)="onClick.emit($event)" 
+    [ngStyle]="{'background': data.bgcol, 'color': data.col, 'font-size': data.fSise, 'padding': data.padding, 'border-radius': data.bRadius, 'float': data.float}"
+    class="text-center site-button"
+    >
+    <b>
+        {{ data.text }}
+    </b>
+</a>
