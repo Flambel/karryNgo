@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark px-5" style="padding-top: 15px; padding-bottom: 15px; border-bottom: 4px white solid;">
     <a class="navbar-brand" [routerLink]="['/home']">
-        <img src="assets/home_images/help123logo.png" class="img-fluid d-inline-block align-top" alt="">
+        <img src="assets/home_images/karryNgologo.png" class="img-fluid d-inline-block align-top" alt="">
     </a>
     <button class="navbar-toggler text-black" style="color: black;" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="fa fa-reorder"></span>
@@ -8,19 +8,16 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent" style="text-align: center; width: 100%;">
         <ul class="navbar-nav" id="liNav" style="margin-left: auto; margin-right: auto;">
             <li class="nav-item">
-                <a class="nav-link" [routerLink]="['/home']" [routerLinkActive]="['active']"><b>Home</b></a>
+                <a class="nav-link" [routerLink]="['/home']" [routerLinkActive]="['active']"><b>HOME</b></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" [routerLink]="['/access/service-categories']" [routerLinkActive]="['active']"><b>CATEGORIES</b></a>
+                <a class="nav-link" [routerLink]="['/access/service-categories']" [routerLinkActive]="['active']"><b>TRIPS</b></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" [routerLink]="['/access/bank-of-services']" [routerLinkActive]="['active']"><b>SERVICIES</b></a>
+                <a class="nav-link" [routerLink]="['/access/bank-of-services']" [routerLinkActive]="['active']"><b>REQUESTS</b></a>
             </li>
-            <!-- <li class="nav-item">
-                <a class="nav-link" [routerLink]="['/access/online-consultation']" [routerLinkActive]="['active']">online </a>
-            </li> -->
             <li class="nav-item">
-                <a class="nav-link"  [routerLink]="['/read-more-about-us']" [routerLinkActive]="['active']"><b>FAQ</b></a>
+                <a class="nav-link"  [routerLink]="['/read-more-about-us']" [routerLinkActive]="['active']"><b>HOW DOES IT WORK ?</b></a>
             </li>
         </ul>
         
@@ -48,14 +45,14 @@
                 <div class="dropdown-divider"></div>
                 <!-- <a class="dropdown-item" [routerLink]="['/access/completedHelps']">Completed Helps</a>
                 <div class="dropdown-divider"></div> -->
-                <a class="dropdown-item" href="javascript:void(0)" data-toggle="modal" data-target=".bd-example-modal-sm">Log Out</a>                
+                <a class="dropdown-item" href="javascript:void(0)" data-toggle="modal" data-target=".bd-example-modal-sm" style="color:#fac62a">Log Out</a>                
             </div>
         </div>
         <ul id="liAuth">
             <!-- <li class="mr-4" *ngIf="currentUser"> <a href="javascript:void(0)" [routerLink]="['/access/messages']"><img src="assets/header/sms.png" alt="" ></a> </li> -->
             <li class="mr-4" *ngIf="currentUser"> <a href="javascript:void(0)" [routerLink]="['/access/notifications']"><img src="assets/header/notification.png" alt=""></a> </li>
-            <li class="mr-4" *ngIf="!currentUser"> <a href="javascript:void(0)" [routerLink]="['/login']">Login</a> </li>
-            <li *ngIf="!currentUser"> <a href="javascript:void(0)" [routerLink]="['/register']">Register</a> </li>
+            <li class="mr-4" *ngIf="!currentUser"> <a href="javascript:void(0)" [routerLink]="['/login']" style="color:#fac62a">Login</a> </li>
+            <li *ngIf="!currentUser"> <a href="javascript:void(0)" [routerLink]="['/register']" style="color:#fac62a">Register</a> </li>
         </ul>
         <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-sm">

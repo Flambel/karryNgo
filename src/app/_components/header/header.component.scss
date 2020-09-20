@@ -15,16 +15,19 @@
     
 //  }
 
+.navbar{
+   background-color: #242121;
+}
 a{
    text-decoration: none;
-   color: red !important;
+   color: white;
 }
 #liNav li{
    margin-right: 15px;
 }
 .active{
    //  text-decoration: underline;
-   border-bottom: 2px solid red
+   border-bottom: 2px solid white;
 }
 button{
     display: inline;
