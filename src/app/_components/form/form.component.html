@@ -1,12 +1,7 @@
-<div class="p-4" style="margin-bottom: 20px; margin-top: 20px; text-align: center; border-bottom: 1px solid gray;">
-    <h3><b>{{source.title}}</b></h3>
-</div>
+
 <div class="row p-1">
     <div class="col-md-12">
         <form [formGroup]="userForm" (ngSubmit)="onSubmitForm()" class="mx-auto">
-            <div class="form-group row" *ngIf="source.pic">
-                <img [src]="source.pic" height="80px" width="80px" alt="" class="mx-auto">
-            </div>
             <div class="form-group row mx-2">
                 <div class="mb-4" *ngFor="let dataForm of data" [ngClass]= "dataForm.dim">
                     <label [for]="dataForm.controlName"><b>{{ dataForm.label }}</b></label>

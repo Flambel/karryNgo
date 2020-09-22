@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Register } from './../../_models/register';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/_services/authentication.service';
 
@@ -11,24 +11,29 @@ import { AuthenticationService } from 'src/app/_services/authentication.service'
 })
 export class RegisterComponent implements OnInit {
 
-	source = {pic: "assets/profile-user.png", title:"Registration", btnText: "Register", text: "Already have an account? ", link: "Login"};
-    data = [
-        {controlName: "firstname", type: "text", label: "Firstname", value: "", dim: "col-md-6"},
-        {controlName: "surname", type: "text", label: "Surname", dim: "col-md-6"},
-        {controlName: "username", type: "text", label: "Username", dim: "col-md-6"},
-        {controlName: "email", type: "text", label: "email", dim: "col-md-6"},
-        {controlName: "password", type: "password", label: "Password", dim: "col-md-6"},
-        {controlName: "password2", type: "password", label: "Confirm Password", dim: "col-md-6"}
-    ]
+    submitted:boolean;
+    registerForm: FormGroup;
 
 	constructor(private formBuilder: FormBuilder, 
 				private authen: AuthenticationService, 
-				private router: Router) { }
+				private router: Router,
+				private formLog: FormBuilder) { }
 
 	ngOnInit(): void {
 		if(localStorage.getItem('currentUser')){
             this.router.navigate(['/home']);
         }
+        this.registerForm = this.formLog.group({  
+            'firstname':['', Validators.required], 
+            'surename':['', Validators.required], 
+            'username':['', Validators.required], 
+            'language':['', Validators.required], 
+            'agree':['', Validators.required],  
+            'password':['', Validators.required], 
+            'password2':['', Validators.required],  
+			'email':['', Validators.compose([Validators.required])],
+			  
+            });
 	}
 
 	onSubmitForm(formValue){
@@ -53,4 +58,15 @@ export class RegisterComponent implements OnInit {
 	goToActivate(){
 		this.router.navigate(['/account-activation']);
 	}
+
+	/////
+
+
+    onSubmit() {
+        console.log(this.registerForm.value)
+       }
+   get f() {
+        return this.registerForm.controls; 
+    }
+
 }

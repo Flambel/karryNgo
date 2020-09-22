@@ -1,4 +1,4 @@
-<div class="bg-light">
+<div style="background-color: #ffffffee;">
     <div class="container-fluid">
         <div class="row">
             <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
@@ -27,37 +27,140 @@
             <button type="button" class="btn btn-primary bout" id="myCheck" (click)="nothing()" data-toggle="modal" data-target="#exampleModalLong">Launch</button>
             <app-modal [subcats_data]="subcats_data"></app-modal>
         </div> -->
-        <div class="section-full bg-change-section overlay-wraper bg-light pt-4">
-            <div class="col-md-12">
-                <app-category-services [services_categ]="services_category_home" (clickOnThis)="loadName($event)" [title]="'BROWSE CATEGORIES'"></app-category-services>
-            </div>            
-            <div class="col-md-12 p-5">
-                <app-button [data]="data" (onClick)="browseCategories($event)" ></app-button>
-            </div> 
-        </div>
         <div class="section-full bg-change-section overlay-wraper pb-5" style="margin-top: 50px">
             <div class="container">
-                <div class="row">
-                    <div class="col-md-3">
-                        <img src="assets/homestyle/images/testimonials/pic6.jpg" width="200" height="200" alt="" style="border-radius: 50%">
-                    </div>
-                    <div class="col-md-7">
-                        <div class="section  text-black" style=" color: green">
-                            <h1 >What do they say about karryNgo ?</h1>
-                        </div>
-                        <div class="section  text-black" style=" margin-top: 20px; margin-bottom: 20px">
-                            <p>“Thank you Help 123” </p>
-                            <p>
-                                I got a burst pipe at my house on a Saturday afternoon, randomly searched for a plumber on Help 123 website, within minutes two plumbers came out and did the repair. Service was professional and the plumbers courteous.
-                            </p>
-                        </div>
-                        <div class="section  text-black" style=" margin-top: 50px">
-                            <app-button [data]="dataAbout" (onClick)="aboutUs($event)" ></app-button>
-                            <!-- <app-button text="READ MORE ABOUT HELPONE23" (onClick)="goToServices()" bgcol="green" col="white"></app-button> -->
+                
+                <!-- badg -->
+                <div class="badg">
+                    <div class="container">
+                        <div class="row badg_row">
+                            
+                            <!-- badg Item -->
+                            <div class="col-lg-4 badg_col">
+                                <div class="badg_item">
+                                    <div class="badg_image">
+                                        <img src="assets/homestyle/images/testimonials/hand2hand.png" alt="https://unsplash.com/@silverhousehd">
+                                    </div>
+                                    <div class="badg_content">
+                                        <div class="badg_title">Hand 2 Hand</div>
+                                        <div class="badg_text">
+                                        </div>
+                                    </div>
+                                    <div class="badg_button"><a href="#">read more</a></div>
+                                </div>
+                            </div>
+
+                            <!-- badg Item -->
+                            <div class="col-lg-4 badg_col">
+                                <div class="badg_item">
+                                    <div class="badg_image">
+                                        <img src="assets/homestyle/images/testimonials/bikes.png" alt="https://unsplash.com/@silverhousehd">
+                                    </div>
+                                    <div class="badg_content">
+                                        <div class="badg_title">Bikes</div>
+                                        <div class="badg_text">
+                                        </div>
+                                    </div>
+                                    <div class="badg_button"><a href="#">read more</a></div>
+                                </div>
+                            </div>
+
+                            <!-- badg Item -->
+                            <div class="col-lg-4 badg_col">
+                                <div class="badg_item">
+                                    <div class="badg_image">
+                                        <img src="assets/homestyle/images/testimonials/cars.png" alt="https://unsplash.com/@silverhousehd">
+                                    </div>
+                                    <div class="badg_content">
+                                        <div class="badg_title">Cars</div>
+                                        <div class="badg_text">
+                                        </div>
+                                    </div>
+                                    <div class="badg_button"><a href="#">read more</a></div>
+                                </div>
+                            </div>
+
+                            <!-- badg Item -->
+                            <div class="col-lg-4 badg_col">
+                                <div class="badg_item">
+                                    <div class="badg_image">
+                                        <img src="assets/homestyle/images/testimonials/trucks.png" alt="https://unsplash.com/@silverhousehd">
+                                    </div>
+                                    <div class="badg_content">
+                                        <div class="badg_title">Trucks</div>
+                                        <div class="badg_text">
+                                        </div>
+                                    </div>
+                                    <div class="badg_button"><a href="#">read more</a></div>
+                                </div>
+                            </div>
+
+                            <!-- badg Item -->
+                            <div class="col-lg-4 badg_col">
+                                <div class="badg_item">
+                                    <div class="badg_image">
+                                        <img src="assets/homestyle/images/testimonials/air.png" alt="https://unsplash.com/@silverhousehd">
+                                    </div>
+                                    <div class="badg_content">
+                                        <div class="badg_title">Air Freibht</div>
+                                        <div class="badg_text">
+                                        </div>
+                                    </div>
+                                    <div class="badg_button"><a href="#">read more</a></div>
+                                </div>
+                            </div>
+
+                            <!-- badg Item -->
+                            <div class="col-lg-4 badg_col">
+                                <div class="badg_item">
+                                    <div class="badg_image">
+                                        <img src="assets/homestyle/images/testimonials/ocean.png" alt="https://unsplash.com/@silverhousehd">
+                                    </div>
+                                    <div class="badg_content">
+                                        <div class="badg_title">Ocean Freigh</div>
+                                        <div class="badg_text">
+                                        </div>
+                                    </div>
+                                    <div class="badg_button"><a href="#">read more</a></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+
+            <div class="features">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6 features_col">
+                            <div class="features_content">
+                                <div class="section_title_container">
+                                    <div class="section_title">Why Choose us?</div>
+                                    <div class="section_text">
+                                        <p>About 64% of all on-line teens say that do things online that they
+                                            wouldn’t want their parents to know about. 11% of all adult internet
+                                            users visit dating websites and spend their time in chatrooms.</p>
+                                            <br />                               
+                                            <BLOCKQUOTE>
+                                                <i class="fa fa-user-circle" style="color: rgb(253, 204, 9); font-size: 35px;"></i> <b> Customer Satisfaction </b><br /> 12 Handy Tips For Generating Leads Through Cold Calling.<br />
+                                                <i class="fa fa-tasks" style="color: rgb(253, 204, 9); font-size: 35px;"></i> <b> Management Reporting </b><br />12 Handy Tips For Generating Leads Through Cold Calling.<br />
+                                                <i class="fa fa-shopping-cart" style="color: rgb(253, 204, 9); font-size: 35px;"></i> <b> Freight Payment Solution </b><br />12 Handy Tips For Generating Leads Through Cold Calling.<br />
+                                            </BLOCKQUOTE>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="features_images clearfix">
+                                <div class="features_image_1"><img src="assets/homestyle/images/testimonials/commitent.png" alt=""></div>
+                                <!--div class="features_image_2"><img src="" alt=""></div-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
         </div>
         <!-- Our Client Logo -->
         <!-- <div class="section-full bg-black p-tb50">
@@ -168,5 +271,4 @@
             </div>
 
         </div> -->
-    </div>
 </div>
