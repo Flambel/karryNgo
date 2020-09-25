@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { AuthenticationService } from 'src/app/_services/authentication.service';
 import { Router } from '@angular/router';
 
@@ -12,17 +12,27 @@ export class AccountActivationComponent implements OnInit {
     
     source = {pic: "assets/profile-user.png", title:"Account Activation", btnText: "activate", bradius: "10px"};    
     data = [
-        {controlName: "emailOrPhone", type: "text", label: "Email/ Phone Number", dim: "col-md-12"},
+        {controlName: "email", type: "text", label: "Email", dim: "col-md-12"},
         {controlName: "password", type: "text", label: "Password", dim: "col-md-12"},
         {controlName: "activation_code", type: "number", label: "Activation code", dim: "col-md-12"}
     ]
-    
-    constructor( private authen: AuthenticationService, private router: Router) { }
+    submitted:boolean;
+    activationForm: FormGroup;
+
+    constructor( private authen: AuthenticationService, 
+        private router: Router,
+        private formLog: FormBuilder) { }
 
     ngOnInit(): void {
         if(localStorage.getItem('currentUser')){
             this.router.navigate(['/home']);
         }
+        this.activationForm = this.formLog.group({
+            'password':['', Validators.required], 
+            'activationCode':['', Validators.required],  
+			'email':['', Validators.compose([Validators.required])],
+			  
+            });
     }
 
     onSubmitForm(formValue){
@@ -30,5 +40,9 @@ export class AccountActivationComponent implements OnInit {
     }
 
     navigateTo(){}
+
+    get f() {
+        return this.activationForm.controls; 
+    }
 
 }

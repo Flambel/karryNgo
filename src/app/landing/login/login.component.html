@@ -4,11 +4,11 @@
             <div class="col-md-5 bg-white my-5" style="margin-right: auto; margin-left: auto; border-radius: 15px;">
                 <div class="p-4" style="margin-bottom: 20px; margin-top: 20px; text-align: center; border-bottom: 1px solid gray;">
                    
-                    <h3><b>{{source.title}}</b></h3>
+                    <h3><b>Login</b></h3>
                 </div>
                 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
                     <div class="form-group">
-                        <input type="text" formControlName="email" placeholder="Email/Username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+                        <input type="text" formControlName="email" placeholder="Enter Your Email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
 
                         <div *ngIf="submitted && f.email.errors" class="invalid-feedback text-danger">
                             <div *ngIf="f.email.errors.required">Field is required</div>
@@ -20,7 +20,7 @@
                          <div *ngIf="submitted && f.pwd.errors" class="invalid-feedback text-danger">
                             <div *ngIf="f.pwd.errors.required">Password is required</div>
                          </div>
-                     </div>
+                     </div><br>
                         <div class="login-help">                                             
                              <span class="pull-left" style="margin-top: -15px;">
                                 <input id="checkbox-1" class="checkbox-custom" name="checkbox-1" type="checkbox">
@@ -30,8 +30,9 @@
                         <span class="pull-right">
                         <input type="submit" class="login loginmodal-submit" value="Login">
                         </span>
-                      </form><br><br>
-                <p><a href="javascript:void(0)" (click)="navigateToForgot()" >I forgot my password</a></p>
+                      </form><br><br><br>
+                <p><a href="javascript:void(0)" (click)="navigateToForgot()" >I forgot my password.</a><br>
+            <br><a href="javascript:void(0)" (click)="navigateToActivAccount()" >Active my account.</a></p>
             </div>
         </div>
     </div>

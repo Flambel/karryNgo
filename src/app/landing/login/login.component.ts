@@ -39,12 +39,15 @@ export class LoginComponent implements OnInit {
 		this.authen.login(loginModel);
     }
     
-    navigateTo(){
+    navigateToRegister(){
         this.router.navigate(['/register']);
     }
 
     navigateToForgot(){
         this.router.navigate(['/reset-forgotten-password']);
+    }
+    navigateToActivAccount(){
+        this.router.navigate(['/account-activation']);
     }
 
     ///////////
